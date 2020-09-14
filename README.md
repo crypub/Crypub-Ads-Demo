@@ -15,7 +15,7 @@ repositories {
 
 ```java
 dependencies {
-    implementation 'live.crypub.ads:ads:1.0'
+    implementation 'live.crypub.ads:ads:3.0'
 }
 ```
 
