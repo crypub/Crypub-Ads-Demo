@@ -79,6 +79,60 @@ Add in layout
         android:layout_height="50dp"
         />
 ```
+### Native Banner ADS
+```java
+import live.crypub.ads.Adrequest;
+import live.crypub.ads.CryNative;
+import live.crypub.ads.Nativelistener;
+```
+Add in onCreate
+```java
+CryNative crynative = (CryNative)findViewById(R.id.nativeads);
+crynative.loadAd(MainActivity.this, crynative);
+
+
+//Optional Listener
+crynative.setAdlistener(new Nativelistener() {
+    
+    //Optional
+    @Override
+    public void onadloaded() {
+        Toast.makeText(MainActivity.this, "Native Ads Loaded", Toast.LENGTH_SHORT).show();
+    }
+
+    //Optional
+    @Override
+    public void onadfailed(int errorcode) {
+        //Optional
+        switch (errorcode){
+            case Adrequest.ERROR_CODE_INTERNAL_ERROR:
+                Toast.makeText(MainActivity.this, "Native Ads Failed INTERNAL ERROR", Toast.LENGTH_SHORT).show();
+                break;
+            case Adrequest.ERROR_CODE_INVALID_REQUEST:
+                Toast.makeText(MainActivity.this, "Native Ads Failed INVALID_REQUEST", Toast.LENGTH_SHORT).show();
+                break;
+            case Adrequest.ERROR_CODE_NETWORK_ERROR:
+                Toast.makeText(MainActivity.this, "Native Ads Failed NETWORK_ERROR", Toast.LENGTH_SHORT).show();
+                break;
+            case Adrequest.ERROR_CODE_NO_FILL:
+                Toast.makeText(MainActivity.this, "Native Ads Failed NO FILL", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+});
+```
+Add in layout
+```xml
+<live.crypub.ads.CryNative
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/nativeads"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+```
 
 ### Interstitial Ads
 ```java
